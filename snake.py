@@ -9,6 +9,7 @@ class Snake(pygame.sprite.Sprite):
         self.direction = 'down'
         #position
         self.rect = self.image.get_rect(topleft = pos)
+        #snake segment list
         self.snake_list = [pygame.Rect(self.rect)]
         
 

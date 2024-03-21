@@ -10,15 +10,10 @@ clock = pygame.time.Clock()
 running = True
 
 # snake
-
 snake = Snake((32, 32))  # Create a snake object
 
-
 # food
-
 food = Food((128,128))
-
-
 
 while running:
     # poll for events
@@ -42,5 +37,5 @@ while running:
     # flip() the display to put your work on screen
     pygame.display.update()
 
-    clock.tick(10)  # limits FPS to 60
+    clock.tick(10)  #fps
 
