@@ -24,10 +24,7 @@ class Snake(pygame.sprite.Sprite):
             elif event.key == pygame.K_DOWN and self.direction != "up":
                 self.direction = "down"
 
-    def col_check(self, food, food_list):
-        if pygame.Rect.colliderect(self.rect, food.rect):
-            print("hey")
-            food_list.remove(food)
+    
             
 
     def draw(self, screen):
@@ -54,7 +51,7 @@ class Snake(pygame.sprite.Sprite):
       
     def update(self, food, food_list):
         self.direction_check()
-        self.col_check(food, food_list)
+        
 
 
 
