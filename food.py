@@ -11,3 +11,11 @@ class Food(pygame.sprite.Sprite):
 
     def draw(self, screen):
         pygame.draw.rect(screen, (0, 0, 255), self.rect)
+
+    def create(self):
+        # if self.food_list == []:
+        #     self.draw()
+        pass
+
+    def update(self):
+        self.create()

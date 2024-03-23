@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 from snake import *
 from food import *
+import random
 
 # pygame setup
 pygame.init()
@@ -13,7 +14,9 @@ running = True
 snake = Snake((32, 32))  # Create a snake object
 
 # food
-food = Food((128,128))
+food_list = []
+food = Food((random.randint(0,512),random.randint(0,512)))
+food_list.append(food)
 
 while running:
     # poll for events
@@ -28,9 +31,9 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
 
-    # RENDER YOUR GAME HERE
     food.draw(screen)
-    snake.update(food)
+    # RENDER YOUR GAME HERE
+    snake.update(food, food_list)
     snake.draw(screen)
     
 
