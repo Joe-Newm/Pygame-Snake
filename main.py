@@ -35,15 +35,15 @@ while running:
             pygame.quit
             exit()
         snake.get_input(event)
-        
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
 
     # RENDER YOUR GAME HERE
+    ## snake render
     snake_group.update(screen)
     snake_group.draw(screen)
-    
+    ## food render
     food_list.update(snake, food_list)
     food_list.draw(screen)
     

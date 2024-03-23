@@ -10,12 +10,10 @@ class Snake(pygame.sprite.Sprite):
         #position
         self.rect = self.image.get_rect(topleft = pos)
         #snake segment list
+        self.head = pygame.Rect(self.rect)
         self.snake_list = []
         self.direction_change_allowed = True
         self.vel = 0
-
-
-        
 
     def get_input(self, event):
         if event.type == pygame.KEYDOWN:
@@ -29,6 +27,8 @@ class Snake(pygame.sprite.Sprite):
                     self.direction = "up"
                 elif event.key == pygame.K_DOWN and self.direction != "up":
                     self.direction = "down"
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit
             self.direction_change_allowed = False
 
         if event.type == pygame.JOYBUTTONDOWN:
@@ -43,10 +43,6 @@ class Snake(pygame.sprite.Sprite):
                 elif event.button == 12 and self.direction != "up":
                     self.direction = "down"
             self.direction_change_allowed = False
-
-        
-
-
 
     def direction_check(self):
         self.vel = 32
@@ -78,24 +74,28 @@ class Snake(pygame.sprite.Sprite):
         if self.rect.y > 480:
             self.death()
             self.rect.y -= 32
+        for seg in self.snake_list:
+            if self.rect.x == seg.x and self.rect.y == seg.y:
+                self.death()
+                print("hit")
 
-            
-      
     def update(self, screen):
         self.direction_check()
         self.direction_change_allowed = True
         self.death_check()
 
+        ## draw each snake segment
         for segment in self.snake_list:
             pygame.draw.rect(screen, (255, 255, 255), segment)
 
+        ## logic for snake segments following snake head
         if self.snake_list:
             for i in range(len(self.snake_list)-1, 0, -1):
                 self.snake_list[i].x = self.snake_list[i-1].x
                 self.snake_list[i].y = self.snake_list[i-1].y
             self.snake_list[0].x = self.rect.x
             self.snake_list[0].y = self.rect.y
-        
+
 
 
 

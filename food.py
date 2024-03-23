@@ -6,7 +6,6 @@ class Food(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface((32,32))
         self.image.fill('blue')
-        #position
         self.rect = self.image.get_rect(topleft = pos)
 
     def col_check(self, snake, food_list):
