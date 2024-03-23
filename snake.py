@@ -1,6 +1,7 @@
 import pygame
 from food import *
 
+
 class Snake(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
@@ -27,8 +28,7 @@ class Snake(pygame.sprite.Sprite):
                     self.direction = "up"
                 elif event.key == pygame.K_DOWN and self.direction != "up":
                     self.direction = "down"
-                elif event.key == pygame.K_ESCAPE:
-                    pygame.quit
+                
             self.direction_change_allowed = False
 
         if event.type == pygame.JOYBUTTONDOWN:

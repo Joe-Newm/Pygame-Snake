@@ -4,28 +4,31 @@ from snake import *
 from food import *
 import random
 
-# pygame setup
-pygame.init()
-screen = pygame.display.set_mode((512, 512))
-pygame.display.set_caption("Joe Newm's Snake Game")
-clock = pygame.time.Clock()
-running = True
+def init_game():
+    pygame.init()
+    screen = pygame.display.set_mode((512, 512))
+    pygame.display.set_caption("Joe Newm's Snake Game")
+    clock = pygame.time.Clock()
+    running = True
 
-# snake
-snake_group = pygame.sprite.Group()
-snake = Snake((32, 32))  # Create a snake object
-snake_group.add(snake)
+    # snake
+    snake_group = pygame.sprite.Group()
+    snake = Snake((32, 32))  # Create a snake object
+    snake_group.add(snake)
 
 
-# food
-food_list = pygame.sprite.Group()
-food = Food((random.randint(0,15)*32,random.randint(0,15)*32))
-food_list.add(food)
+    # food
+    food_list = pygame.sprite.Group()
+    food = Food((random.randint(0,15)*32,random.randint(0,15)*32))
+    food_list.add(food)
+
+    return screen, clock, running, snake_group, snake, food_list, food
 
 #controller
 pygame.joystick.init()
 joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
 
+screen, clock, running, snake_group, snake, food_list, food = init_game()
 
 while running:
     # poll for events
@@ -35,6 +38,12 @@ while running:
             pygame.quit
             exit()
         snake.get_input(event)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit
+                exit()
+            if event.key == pygame.K_r:
+                init_game()
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
