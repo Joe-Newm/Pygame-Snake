@@ -15,7 +15,8 @@ def init_game():
     snake_group = pygame.sprite.Group()
     snake = Snake((32, 32))  # Create a snake object
     snake_group.add(snake)
-
+    snake.rect.x = 32
+    snake.rect.y = 32
 
     # food
     food_list = pygame.sprite.Group()
@@ -24,6 +25,7 @@ def init_game():
 
     return screen, clock, running, snake_group, snake, food_list, food
 
+running = True
 #controller
 pygame.joystick.init()
 joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
@@ -44,6 +46,7 @@ while running:
                 exit()
             if event.key == pygame.K_r:
                 init_game()
+                print("hey")
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
