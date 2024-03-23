@@ -22,6 +22,10 @@ food_list = pygame.sprite.Group()
 food = Food((random.randint(0,15)*32,random.randint(0,15)*32))
 food_list.add(food)
 
+#controller
+pygame.joystick.init()
+joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+
 
 while running:
     # poll for events
@@ -31,6 +35,7 @@ while running:
             pygame.quit
             exit()
         snake.get_input(event)
+        
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
