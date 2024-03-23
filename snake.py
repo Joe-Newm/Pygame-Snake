@@ -10,7 +10,8 @@ class Snake(pygame.sprite.Sprite):
         #position
         self.rect = self.image.get_rect(topleft = pos)
         #snake segment list
-        self.snake_list = [pygame.Rect(self.rect)]
+        self.snake_list = []
+        
         
 
     def get_input(self, event):
@@ -24,13 +25,6 @@ class Snake(pygame.sprite.Sprite):
             elif event.key == pygame.K_DOWN and self.direction != "up":
                 self.direction = "down"
 
-    
-            
-
-    def draw(self, screen):
-        # Draw each segment of the snake
-        for segment in self.snake_list:
-            pygame.draw.rect(screen, (255, 255, 255), segment)
 
     def direction_check(self):
         if self.direction == "down":
@@ -41,6 +35,13 @@ class Snake(pygame.sprite.Sprite):
             self.rect.x -= 32
         elif self.direction == "right":
             self.rect.x += 32
+            
+      
+    def update(self, screen):
+        self.direction_check()
+
+        for segment in self.snake_list:
+            pygame.draw.rect(screen, (255, 255, 255), segment)
 
         if self.snake_list:
             for i in range(len(self.snake_list)-1, 0, -1):
@@ -48,9 +49,6 @@ class Snake(pygame.sprite.Sprite):
                 self.snake_list[i].y = self.snake_list[i-1].y
             self.snake_list[0].x = self.rect.x
             self.snake_list[0].y = self.rect.y
-      
-    def update(self, food, food_list):
-        self.direction_check()
         
 
 

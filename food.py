@@ -9,11 +9,6 @@ class Food(pygame.sprite.Sprite):
         #position
         self.rect = self.image.get_rect(topleft = pos)
 
-    def create(self):
-        # if self.food_list == []:
-        #     self.draw()
-        pass
-
     def col_check(self, snake, food_list):
         if pygame.Rect.colliderect(self.rect, snake.rect):
             print("hey")
@@ -24,5 +19,4 @@ class Food(pygame.sprite.Sprite):
             
 
     def update(self, snake, food_list):
-        self.create()
         self.col_check(snake, food_list)
